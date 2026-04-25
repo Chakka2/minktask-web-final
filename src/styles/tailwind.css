@@ -1,0 +1,244 @@
+/* @import must come before @tailwind so PostCSS/CSS output stays valid */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: 220 90% 60%;
+    --primary-foreground: 0 0% 100%;
+    --background: 222 47% 6%;
+    --foreground: 210 40% 96%;
+    --card: 220 30% 10%;
+    --card-foreground: 210 40% 96%;
+    --border: 220 20% 18%;
+    --muted: 220 20% 14%;
+    --muted-foreground: 215 20% 55%;
+    --accent: 190 90% 50%;
+    --success: 142 70% 45%;
+    --warning: 38 90% 55%;
+    --destructive: 0 72% 55%;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .glass-card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1.25rem;
+    box-shadow: 0 12px 30px rgba(4, 10, 30, 0.28);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+  }
+
+  .glass-card-hover:hover {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+    border-color: rgba(99, 102, 241, 0.26);
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px rgba(7, 14, 35, 0.35);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #60a5fa, #818cf8, #22d3ee);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-bg {
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+  }
+
+  .gradient-bg-subtle {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(99, 102, 241, 0.15));
+  }
+
+  .btn-primary {
+    @apply gradient-bg text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 active:scale-95;
+    box-shadow: 0 10px 24px rgba(99, 102, 241, 0.3);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 14px 30px rgba(99, 102, 241, 0.45);
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost {
+    @apply text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 active:scale-95;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+  }
+.input-field  {
+    @apply w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-blue-500/50 transition-all duration-200;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .input-field:focus {
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  }
+
+  .status-badge {
+    @apply text-xs font-semibold px-2.5 py-1 rounded-full;
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(99, 102, 241, 0.3) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.3);
+    border-radius: 2px;
+  }
+
+  .page-bg {
+    background: radial-gradient(ellipse at top left, rgba(59, 130, 246, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(99, 102, 241, 0.10) 0%, transparent 50%),
+                hsl(var(--background));
+    min-height: 100vh;
+  }
+
+  .landing-premium {
+    background: radial-gradient(120% 80% at 50% -10%, rgba(120, 119, 198, 0.14), transparent 55%),
+      radial-gradient(90% 60% at 100% 0%, rgba(45, 212, 191, 0.06), transparent 45%),
+      linear-gradient(180deg, hsl(222 42% 7%) 0%, hsl(222 47% 5.5%) 100%);
+    min-height: 100vh;
+  }
+
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .nav-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .nav-item.active {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(99, 102, 241, 0.2));
+    color: #fff;
+    border: 1px solid rgba(99, 102, 241, 0.25);
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Digital mint + glass — auth / “no account” toasts (Sonner) */
+  .toast-glass-error {
+    background: linear-gradient(165deg, rgba(45, 212, 191, 0.12), rgba(99, 102, 241, 0.08), rgba(255, 255, 255, 0.04)) !important;
+    border: 1px solid rgba(45, 212, 191, 0.28) !important;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 16px 40px rgba(4, 12, 32, 0.45) !important;
+    color: #f0fdfa !important;
+  }
+
+  .toast-glass-title {
+    font-weight: 600 !important;
+    color: #fff !important;
+  }
+
+  .toast-glass-description {
+    color: rgba(255, 255, 255, 0.72) !important;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out forwards;
+  }
+
+  .animate-pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.55s ease-out forwards;
+  }
+
+  .stagger-1 {
+    animation-delay: 80ms;
+  }
+
+  .stagger-2 {
+    animation-delay: 160ms;
+  }
+
+  .stagger-3 {
+    animation-delay: 240ms;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.6); }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
